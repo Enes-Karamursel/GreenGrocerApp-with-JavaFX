@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AdminInterfaceController">
+   <children>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <BorderPane prefHeight="600.0" prefWidth="1972.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <left>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <AnchorPane layoutY="8.0" prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <Label fx:id="Username" contentDisplay="CENTER" layoutX="38.0" layoutY="78.0" prefHeight="85.0" prefWidth="124.0" text="UserName" wrapText="true">
+                                 <font>
+                                    <Font name="System Bold" size="22.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutY="233.0" prefHeight="367.0" prefWidth="200.0">
+                           <children>
+                              <Button fx:id="DashboardButton" layoutX="12.0" layoutY="22.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="30.0" prefWidth="176.0" text="Dashboard" />
+                              <Button fx:id="ItemButton" layoutX="12.0" layoutY="77.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="30.0" prefWidth="176.0" text="Item Management" />
+                              <Button fx:id="CourierButton" layoutX="11.0" layoutY="130.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="30.0" prefWidth="176.0" text="Courier Management" />
+                              <Button fx:id="OrderButton" layoutX="11.0" layoutY="184.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="30.0" prefWidth="176.0" text="Order Management" />
+                              <Button layoutX="65.0" layoutY="297.0" mnemonicParsing="false" onAction="#handleSignOutAction" text="Sign Out" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+               </left>
+               <effect>
+                  <Blend />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+               <center>
+                  <AnchorPane BorderPane.alignment="CENTER">
+                     <children>
+                        <AnchorPane fx:id="itemanchor" prefHeight="600.0" prefWidth="901.0" visible="false">
+                           <children>
+                              <AnchorPane prefHeight="600.0" prefWidth="862.0">
+                                 <children>
+                                    <TableView fx:id="availableItemTable" layoutX="451.0" layoutY="40.0" onMouseClicked="#selectItem" prefHeight="520.0" prefWidth="449.0">
+                                      <columns>
+                                        <TableColumn fx:id="availableItemName" prefWidth="116.0" text="Product Name" />
+                                          <TableColumn fx:id="availableItemPrice" prefWidth="52.0" text="Price" />
+                                          <TableColumn fx:id="availableItemThreshold" prefWidth="77.0" text="Threshold" />
+                                          <TableColumn fx:id="availableItemStock" prefWidth="65.0" text="Stock" />
+                                        <TableColumn fx:id="availableItemType" prefWidth="65.0" text="Type" />
+                                          <TableColumn fx:id="availableItemPath" prefWidth="65.0" text="Path" />
+                                      </columns>
+                                    </TableView>
+                                 </children>
+                              </AnchorPane>
+                              
+                              <AnchorPane prefHeight="594.0" prefWidth="346.0">
+                                 <effect>
+                                    <Lighting>
+                                       <bumpInput>
+                                          <Shadow />
+                                       </bumpInput>
+                                       <light>
+                                          <Light.Distant />
+                                       </light>
+                                    </Lighting>
+                                 </effect>
+                                 <children>
+                                    <Label layoutX="23.0" layoutY="24.0" text="Product Name" />
+                                    <TextField fx:id="itemName" layoutX="120.0" layoutY="21.0" />
+                                    <Label layoutX="23.0" layoutY="57.0" text="Price" />
+                                    <TextField fx:id="itemPrice" layoutX="120.0" layoutY="53.0" />
+                                    <Label layoutX="23.0" layoutY="90.0" text="Threshold" />
+                                    <TextField fx:id="itemThreshold" layoutX="120.0" layoutY="86.0" />
+                                    <Label layoutX="23.0" layoutY="124.0" text="Stock" />
+                                    <TextField fx:id="itemStock" layoutX="120.0" layoutY="120.0" />
+                                    <Label layoutX="26.0" layoutY="158.0" text="Type" />
+                                    <ComboBox fx:id="itemTypes" layoutX="109.0" layoutY="154.0" prefWidth="150.0" promptText="Choose" />
+                                    <Button layoutX="162.0" layoutY="276.0" mnemonicParsing="false" onAction="#deleteItem" prefHeight="65.0" prefWidth="101.0" text="Remove" />
+                                    <Button fx:id="updateButton" layoutX="95.0" layoutY="371.0" mnemonicParsing="false" onAction="#updateItem" prefHeight="65.0" prefWidth="101.0" text="Update" />
+                                    <Button layoutX="45.0" layoutY="276.0" mnemonicParsing="false" onAction="#addItem" prefHeight="61.0" prefWidth="93.0" text="Add" />
+                                    <Label layoutX="27.0" layoutY="197.0" text="Image Path" />
+                                    <TextField fx:id="imagePath" layoutX="120.0" layoutY="193.0" />
+                                 </children>
+   
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="courierAnchor" prefHeight="600.0" prefWidth="901.0" visible="false">
+						   <children>
+						      <TableView fx:id="courierTable" layoutX="14.0" layoutY="14.0" prefHeight="200.0" prefWidth="873.0">
+						         <columns>
+						            <TableColumn fx:id="courierUsernameColumn" prefWidth="200.0" text="Username" />
+						            <!-- Additional columns as needed -->
+						         </columns>
+						      </TableView>
+						      <TextField fx:id="courierUsernameField" layoutX="14.0" layoutY="224.0" prefWidth="200.0" promptText="Username" />
+						      <TextField fx:id="courierPasswordField" layoutX="224.0" layoutY="224.0" prefWidth="200.0" promptText="Password" />
+						      <Button fx:id="addCourierButton" layoutX="434.0" layoutY="224.0" mnemonicParsing="false" onMouseClicked="#addCourier" text="Add Courier" />
+						      <Button fx:id="removeCourierButton" layoutX="534.0" layoutY="224.0" mnemonicParsing="false" onMouseClicked="#removeCourier" text="Remove Courier" />
+						   </children>
+							</AnchorPane>
+                        <AnchorPane fx:id="dashboardanchor" prefHeight="600.0" prefWidth="901.0" visible="false">
+                           <children>
+                              <BarChart fx:id="noOfOrdersChart" layoutX="35.0" layoutY="151.0" prefHeight="299.0" prefWidth="349.0" title="Number Of Orders">
+                                <xAxis>
+                                  <CategoryAxis side="BOTTOM" />
+                                </xAxis>
+                                <yAxis>
+                                  <NumberAxis side="LEFT" />
+                                </yAxis>
+                              </BarChart>
+                              <BarChart fx:id="incomeChart" layoutX="468.0" layoutY="151.0" prefHeight="299.0" prefWidth="349.0" title="Income">
+                                 <xAxis>
+                                    <CategoryAxis side="BOTTOM" />
+                                 </xAxis>
+                                 <yAxis>
+                                    <NumberAxis side="LEFT" />
+                                 </yAxis>
+                              </BarChart>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="orderanchor" prefHeight="600.0" prefWidth="901.0" visible="false">
+                           <children>
+                              <AnchorPane prefHeight="600.0" prefWidth="899.0">
+                                 <children>
+                                    <TableView fx:id="allOrdersTable" layoutX="32.0" layoutY="3.0" onMouseClicked="#selectItem" prefHeight="594.0" prefWidth="829.0">
+                                       <columns>
+                                          <TableColumn fx:id="orderTime" prefWidth="111.0" text="Order Time" />
+                                          <TableColumn fx:id="orderRequestedTime" prefWidth="106.0" text="Delivery Time" />
+                                          <TableColumn fx:id="orderUser" minWidth="7.0" prefWidth="85.0" text="User" />
+                                          <TableColumn fx:id="orderCarrier" prefWidth="88.0" text="Carrier" />
+                                          <TableColumn fx:id="orderStatus" prefWidth="107.0" text="Delivery Status" />
+                                          <TableColumn fx:id="orderItems" prefWidth="122.0" text="Items" />
+                                          <TableColumn fx:id="orderTotal" text="Total" />
+                                       </columns>
+                                    </TableView>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+                     </children></AnchorPane>
+               </center>
+            </BorderPane>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>
